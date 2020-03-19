@@ -45,6 +45,11 @@ namespace de.lkraemer.appsettingsmanager
         /// <summary>
         /// 
         /// </summary>
+        private static Assembly _assembly;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private static string _namespace;
 
         /// <summary>
@@ -67,8 +72,7 @@ namespace de.lkraemer.appsettingsmanager
 
             string appSettingFileResourceName = $"{AppSettingsManager._namespace}.{AppSettingsManager._fileName}";
 
-            Assembly assembly = IntrospectionExtensions.GetTypeInfo(typeof(AppSettingsManager)).Assembly;
-            Stream stream = assembly.GetManifestResourceStream(appSettingFileResourceName);
+            Stream stream = AppSettingsManager._assembly.GetManifestResourceStream(appSettingFileResourceName);
 
             using (StreamReader reader = new StreamReader(stream))
             {
@@ -80,10 +84,12 @@ namespace de.lkraemer.appsettingsmanager
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="assembly"></param>
         /// <param name="appNamespace"></param>
         /// <param name="settingsFileName"></param>
-        public static void LoadSettings(string appNamespace, string settingsFileName)
+        public static void LoadSettings(Assembly assembly, string appNamespace, string settingsFileName)
         {
+            AppSettingsManager._assembly = assembly;
             AppSettingsManager._namespace = appNamespace;
             AppSettingsManager._fileName = settingsFileName;
         }
