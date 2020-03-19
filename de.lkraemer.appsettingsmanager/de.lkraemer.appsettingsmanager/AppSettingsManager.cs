@@ -40,7 +40,7 @@ namespace de.lkraemer.appsettingsmanager
         /// <summary>
         /// 
         /// </summary>
-        private JObject _secrets;
+        private readonly JObject _secrets;
 
         /// <summary>
         /// 
