@@ -10,8 +10,8 @@ install the lib from nuget: https://www.nuget.org/packages/de.lkraemer.appsettin
 
 ## usage
 
-
-    AppSettingsManager.LoadSettings("XamarinAppExample.App", "appsettings.json");
+    Assembly assembly = Assembly.GetAssembly(typeof(XamarinAppExample.App));
+    AppSettingsManager.LoadSettings(assembly, "XamarinAppExample", "appsettings.json");
 
     string value = AppSettingsManager.Settings["Secrets:AndroidSecret"];
 
